@@ -107,8 +107,8 @@ const useStyles = makeStyles((theme) => ({
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" >
-        <Toolbar className={classes.toolbar}>
+      <AppBar position="sticky" >
+        <Toolbar  className={classes.toolbar}>
           <IconButton
             edge="start"
             className={classes.menuButton}

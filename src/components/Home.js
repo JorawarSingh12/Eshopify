@@ -21,7 +21,7 @@ export class Home extends Component {
         </Grid>)
     
            
-            if(!this.props.electronics ||  !this.props.groceries || ! this.props.wishlist || !this.props.wishlist[0].product)
+            if(!this.props.electronics ||  !this.props.groceries || ! this.props.wishlist || ! this.props.wishlist[0] || !this.props.wishlist[0].product)
                 return (
             <Grid container spacing={3} style={{marginTop:60}}>
                 

@@ -18,7 +18,7 @@ class Category extends Component {
 
         
         
-                if(!this.props.categories[categoryOs])
+                if(!this.props.categories[categoryOs] || ! this.props.wishlist || !this.props.wishlist[0].product)
                     return (
                 <Grid container spacing={3} style={{marginTop:60,marginLeft: 10}}>
                     
@@ -42,10 +42,12 @@ class Category extends Component {
         <Grid container   style={{ marginTop:40}} >
         {
             this.props.categories[categoryOs].map((product,index)=>{
+                const x=this.props.wishlist[0].product.filter(a=>a.id===product.id)
+                const isWishlisted=x.length===1?true:false
                 return(
                     
                     <Grid key={index} item lg={3} sm={12} xs={12} md={6}  >
-                    <MaterialCard  product={product} uid={this.props.uid}></MaterialCard>
+                    <MaterialCard  product={product} uid={this.props.uid} isWishlisted={isWishlisted}></MaterialCard>
                     </Grid>
                    
                 )
@@ -66,7 +68,9 @@ const mapStateToProps = (state) => {
    
     return ({
         uid: state.firebase.auth.uid,
-        categories:state.firestore.ordered?state.firestore.ordered:null
+        categories:state.firestore.ordered?state.firestore.ordered:null,
+        wishlist:state.firestore.ordered.wishlist?state.firestore.ordered.wishlist.filter((doc)=>doc.id===state.firebase.auth.uid):null,
+
  })   
 }
 
@@ -80,5 +84,6 @@ export default compose(
     {collection: 'toys'},
     {collection: 'paintings'},
     {collection: 'groceries'},
+    {collection: 'wishlist'},
   ])
       )(Category)

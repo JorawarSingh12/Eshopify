@@ -7,7 +7,6 @@ import Details from './components/Details'
 import Checkout from './payment/Checkout'
 import Header from './partials/Header'
 import Footer from './partials/Footer'
-import purple from '@material-ui/core/colors/purple';
 import { createMuiTheme,ThemeProvider } from '@material-ui/core/styles';
 import  Wishlist  from './components/Usercomponent/Wishlist';
 import  Orders  from './components/Usercomponent/Orders';
@@ -18,7 +17,9 @@ import  Create  from './components/Create';
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple,
+    primary: {
+     main: "#ec407a",
+    },
     secondary: {
       main: '#f44336',
     },

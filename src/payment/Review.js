@@ -36,9 +36,10 @@ export default function Review({cardDetails,address,cart}) {
 
   
 const products = cart[0].product
+console.log(products)
 let total=0;
-cart[0].product.forEach(element => {
-  total=total+element.price;
+products.forEach(element => {
+  total=total+ parseFloat(element.price) ;
 });
 
   return (

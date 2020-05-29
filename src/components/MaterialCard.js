@@ -16,7 +16,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import { addtoWishlist,removefromWishlist, addtoCart } from '../actions/userActions';
 import { connect } from 'react-redux'
 import { Button } from '@material-ui/core';
-
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,8 +35,8 @@ const useStyles = makeStyles((theme) => ({
  function MaterialCard({product,addtoWishlist,removefromWishlist,uid,addToCart,isWishlisted}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  console.log(isWishlisted)
- 
+ // console.log(isWishlisted)
+  const [cart,setCart]=React.useState(null)
   
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -58,10 +58,10 @@ const useStyles = makeStyles((theme) => ({
     setOpen(true)
   }
   const cartHandler=()=>{
+    
     addToCart(product,uid)
+    setCart(true)
   }
-
-  
 
   return (
     <Card className={classes.root}>
@@ -88,16 +88,16 @@ const useStyles = makeStyles((theme) => ({
       </CardContent>
       </CardActionArea>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" color={isWishlisted?"secondary":"inherit"}  onClick={wishlistHandler}>
+        <IconButton aria-label="add to favorites" color={isWishlisted?"secondary":"white"}  onClick={wishlistHandler}>
           <FavoriteIcon  />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-         <Button color="primary" variant="contained" size="large" style={{margin:15,marginLeft:160}} onClick={cartHandler}> {product.price}</Button>       
+         <Button color="primary" variant="contained" size="large" style={{margin:15,marginLeft:160,padding:10}} onClick={cartHandler}>{cart?<CheckCircleIcon/>:null}  {product.price}</Button>       
       </CardActions>
 
-    <SnackbarComponent open={open} handleClose={handleClose} title={product.title} variant="contained" color={isWishlisted}></SnackbarComponent>
+    <SnackbarComponent open={open} handleClose={handleClose} title={product.title} variant="contained" color={isWishlisted} ></SnackbarComponent>
     </Card>
     
   );

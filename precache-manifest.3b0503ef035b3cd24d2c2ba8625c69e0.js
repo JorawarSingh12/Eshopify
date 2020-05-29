@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f0e03f1b62bc5fdaaadd7cebf6860326",
+    "revision": "1855a390b9c8cd89eba818d1edf77ea7",
     "url": "/jorawarsinghsaini.github.io/Eshopify/index.html"
   },
   {
-    "revision": "3d0eb54fe61f627af852",
+    "revision": "94ca5d2be9ade711b09b",
     "url": "/jorawarsinghsaini.github.io/Eshopify/static/css/main.5f361e03.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/jorawarsinghsaini.github.io/Eshopify/static/js/2.ea17e61f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3d0eb54fe61f627af852",
-    "url": "/jorawarsinghsaini.github.io/Eshopify/static/js/main.124635f6.chunk.js"
+    "revision": "94ca5d2be9ade711b09b",
+    "url": "/jorawarsinghsaini.github.io/Eshopify/static/js/main.0a2075a3.chunk.js"
   },
   {
     "revision": "c3c1efb8376d470a3221",

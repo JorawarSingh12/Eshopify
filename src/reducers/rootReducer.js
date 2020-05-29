@@ -6,6 +6,6 @@ import { userReducer } from "./userReducer";
 const rootReducer= combineReducers({
 firestore:firestoreReducer,
 firebase:firebaseReducer,
-userReducer: userReducer
+user: userReducer
 });
 export default rootReducer

@@ -6,7 +6,7 @@ import MaterialCard from '../MaterialCard'
 import {Grid} from '@material-ui/core'
 import Skeleton from '@material-ui/lab/Skeleton';
 import {Redirect} from 'react-router-dom'
-class Wishlist extends Component {
+class Cart extends Component {
     render() {
         if(!this.props.uid)
         return (<Redirect to="/signin"></Redirect>)
@@ -16,7 +16,7 @@ class Wishlist extends Component {
             <Skeleton animation={false} variant="rect" width={380} height={368} />
             </Grid>)
                 
-                if(!this.props.wishlist)
+                if(!this.props.cart)
                     return (
                 <Grid container spacing={3} style={{marginTop:60}}>
                     
@@ -29,7 +29,7 @@ class Wishlist extends Component {
                 </Grid>
                     )
         
-        const productList=this.props.wishlist.length===0?<div>No product in Wishlist !</div>:this.props.wishlist[0].product.map(product=>{
+        const productList=this.props.cart.length===0?<div>No product in cart !</div>:this.props.cart[0].product.map(product=>{
             return (
                 <Grid key={product.id}  item lg={3} sm={12} xs={12} md={6}>
                 <MaterialCard product={product} uid={this.props.uid}></MaterialCard>
@@ -48,7 +48,7 @@ const mapStateToProps = (state) => {
     //console.log(state)
     return ({
         uid: state.firebase.auth.uid,
-        wishlist: state.firestore.ordered.wishlist?state.firestore.ordered.wishlist.filter(product=>product.id===state.firebase.auth.uid):null,
+        cart: state.firestore.ordered.cart?state.firestore.ordered.cart.filter(product=>product.id===state.firebase.auth.uid):null,
         
         
     })
@@ -58,7 +58,7 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
   firestoreConnect([
-    {collection: 'wishlist'},
+    {collection: 'cart'},
     
   ])
-      )(Wishlist)
+      )(Cart)

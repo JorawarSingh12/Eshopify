@@ -10,9 +10,11 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-
-
-
+import { connect } from 'react-redux'
+import { firestoreConnect} from 'react-redux-firebase'
+import {compose} from 'redux'
+import {CircularProgress} from '@material-ui/core' 
+import { addtoOrders } from '../actions/userActions';
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -52,31 +54,63 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step) {
+function getStepContent(step,address,cardDetails,changeAddress,changecardDetails,cart) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm changeAddress={changeAddress} address={address}/>;
     case 1:
-      return <PaymentForm />;
+      return <PaymentForm cardDetails={cardDetails} changecardDetails={changecardDetails}/>;
     case 2:
-      return <Review />;
+      return <Review address={address} cardDetails={cardDetails} cart={cart} />;
     default:
       throw new Error('Unknown step');
   }
 }
 
-export default function Checkout() {
+ function Checkout({cart,addToOrder,uid}) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-
+  const [address,changeAddress]=React.useState({
+    firstName:"",
+    lastName:"",
+    address1:"",
+    address2:"",
+    city:"",
+    zip:"",
+    country:"",
+  })
+  const [cardDetails,changecardDetails]=React.useState({
+    cardName:"",
+    cardNumber:"",
+    expDate:"",
+    cvv:"",
+  })
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
+    
+    if(activeStep===2)
+    {
+      cart[0].product.map(product=>addToOrder(product,uid)) 
+    }
+      setActiveStep(activeStep + 1)
+    
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+  if(!cart)
+  return(
+  <div style={{display:"flex",flexDirection:"column",alignItems:"center",paddingTop:"220px"}}>
+      <CircularProgress color="secondary" ></CircularProgress>
+  </div>
+  )
 
+
+if( cart.length===0 || cart[0].product.length===0)
+  return (<div>Empty Cart</div>)
+  
+  
+  
   return (
     <React.Fragment>
       <CssBaseline />
@@ -100,13 +134,13 @@ export default function Checkout() {
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
+                  Your order number is #{Math.round(Math.random()*1000000)}. We have emailed your order confirmation, and will
                   send you an update when your order has shipped.
                 </Typography>
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep)}
+                {getStepContent(activeStep,address,cardDetails,changeAddress,changecardDetails,cart)}
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} className={classes.button}>
@@ -131,3 +165,24 @@ export default function Checkout() {
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state) => {
+  
+  return ({
+    uid: state.firebase.auth.uid,
+    cart:state.firestore.ordered.cart?state.firestore.ordered.cart.filter(product=>product.id===state.firebase.auth.uid):null
+    
+   } )
+
+}
+const mapDispatchToProps=(dispatch)=>{
+  return ({
+    addToOrder:(product,uid)=>dispatch(addtoOrders(product,uid))
+  })
+}
+export default compose(
+  connect(mapStateToProps,mapDispatchToProps),
+firestoreConnect([
+  {collection: 'cart'}
+])
+    )(Checkout)

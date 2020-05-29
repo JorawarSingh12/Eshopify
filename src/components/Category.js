@@ -16,7 +16,7 @@ class Category extends Component {
             </Grid>)
         const categoryOs=this.props.match.params.category;
 
-        console.log(this.props.categories[categoryOs],categoryOs)
+        
         
                 if(!this.props.categories[categoryOs])
                     return (
@@ -45,7 +45,7 @@ class Category extends Component {
                 return(
                     
                     <Grid key={index} item lg={3} sm={12} xs={12} md={6}  >
-                    <MaterialCard  product={product}></MaterialCard>
+                    <MaterialCard  product={product} uid={this.props.uid}></MaterialCard>
                     </Grid>
                    
                 )
@@ -65,6 +65,7 @@ class Category extends Component {
 const mapStateToProps = (state) => {
    
     return ({
+        uid: state.firebase.auth.uid,
         categories:state.firestore.ordered?state.firestore.ordered:null
  })   
 }

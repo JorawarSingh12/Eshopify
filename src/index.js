@@ -14,6 +14,8 @@ import {createStore,applyMiddleware ,compose} from 'redux'
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux'
 import rootReducer from './reducers/rootReducer'
+// import Authentication from './components/Authentication';
+// import Footer from './partials/Footer';
 
 const store=createStore(rootReducer,
   compose(
@@ -51,6 +53,13 @@ function AuthIsLoaded({ children }) {
   if (!isLoaded(auth)) return <div style={{marginLeft:"50%",paddingTop:"350px"}}>
   <CircularProgress color="secondary" ></CircularProgress>
 </div>;
+// if(isEmpty(auth))
+//       return (
+//       <div>
+//         <Authentication></Authentication>
+//         <Footer></Footer>
+//       </div>
+//       )
 
       return children
 

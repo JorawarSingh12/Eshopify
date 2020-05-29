@@ -5,10 +5,13 @@ import { connect } from 'react-redux'
 import { firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import Skeleton from '@material-ui/lab/Skeleton';
-
+import {Redirect} from 'react-router-dom'
 
 export class Home extends Component {
+
     render() {
+        if(!this.props.uid)
+            return (<Redirect to="/signin"></Redirect>)
         const skeletonCard=(<Grid item >
         <Skeleton animation="wave" variant="text" width={380} height={40}/>
         <Skeleton animation={false} variant="rect" width={380} height={368} />
@@ -16,7 +19,7 @@ export class Home extends Component {
         
         </Grid>)
     
-    
+            
             if(!this.props.electronics || !this.props.fashionwear)
                 return (
             <Grid container spacing={3} style={{marginTop:60}}>
@@ -50,7 +53,7 @@ export class Home extends Component {
                             return(
                                 
                                 <Grid key={index} item lg={3} sm={12} xs={12} md={6}  >
-                                <MaterialCard  product={product}></MaterialCard>
+                                <MaterialCard  product={product} uid={this.props.uid}></MaterialCard>
                                 </Grid>
                                
                             )
@@ -75,17 +78,21 @@ const mapStateToProps = (state) => {
    
     return ({
       electronics: state.firestore.ordered?state.firestore.ordered.electronics:null ,
-      fashionwear: state.firestore.ordered?state.firestore.ordered.fashionwear:null
+      fashionwear: state.firestore.ordered?state.firestore.ordered.fashionwear:null,
+      uid: state.firebase.auth.uid,
      
      } )
   
   }
   
+ 
+
   export default compose(
     connect(mapStateToProps),
   firestoreConnect([
     {collection: 'electronics'},
-    {collection: 'fashionwear'}
+    {collection: 'fashionwear'},
+    {collection: 'cart'}
   ])
       )(Home)
   

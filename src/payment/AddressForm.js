@@ -5,8 +5,20 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-export default function AddressForm() {
+export default function AddressForm({address,changeAddress}) {
+  
+  const changeHandler=(e)=>{
+   
+      changeAddress({
+        ...address,
+      [e.target.name]:e.target.value
+      })
+    
+  }
+    
+  
   return (
+   
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Shipping address
@@ -15,11 +27,11 @@ export default function AddressForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="firstName"
             name="firstName"
             label="First name"
             fullWidth
-            autoComplete="fname"
+            onChange={changeHandler}
+            value={address.firstName}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -29,7 +41,8 @@ export default function AddressForm() {
             name="lastName"
             label="Last name"
             fullWidth
-            autoComplete="lname"
+            onChange={changeHandler}
+            value={address.lastName}
           />
         </Grid>
         <Grid item xs={12}>
@@ -39,7 +52,8 @@ export default function AddressForm() {
             name="address1"
             label="Address line 1"
             fullWidth
-            autoComplete="billing address-line1"
+            value={address.address1}
+            onChange={changeHandler}
           />
         </Grid>
         <Grid item xs={12}>
@@ -49,6 +63,8 @@ export default function AddressForm() {
             label="Address line 2"
             fullWidth
             autoComplete="billing address-line2"
+            value={address.address2}
+            onChange={changeHandler}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -59,6 +75,8 @@ export default function AddressForm() {
             label="City"
             fullWidth
             autoComplete="billing address-level2"
+            onChange={changeHandler}
+            value={address.city}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -72,6 +90,8 @@ export default function AddressForm() {
             label="Zip / Postal code"
             fullWidth
             autoComplete="billing postal-code"
+            onChange={changeHandler}
+            value={address.zip}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -82,6 +102,8 @@ export default function AddressForm() {
             label="Country"
             fullWidth
             autoComplete="billing country"
+            onChange={changeHandler}
+            value={address.country}
           />
         </Grid>
         <Grid item xs={12}>

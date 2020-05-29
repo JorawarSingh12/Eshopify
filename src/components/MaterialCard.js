@@ -13,7 +13,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import SnackbarComponent from '../components/SnackbarComponent'
 import CardActionArea from '@material-ui/core/CardActionArea';
-import { addtoWishlist } from '../actions/userActions';
+import { addtoWishlist,removefromWishlist, addtoCart } from '../actions/userActions';
 import { connect } from 'react-redux'
 import { firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
- function MaterialCard({product}) {
+ function MaterialCard({product,addtoWishlist,removefromWishlist,uid,addToCart}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [color, setColor] = React.useState(false);
@@ -49,14 +49,20 @@ const useStyles = makeStyles((theme) => ({
     if(color===true)
     {
       setColor(false)
+      removefromWishlist(product,uid)
     }
     else{
       setColor(true)
+      addtoWishlist(product,uid)
     }
     setOpen(true)
-    addtoWishlist("hello")
+    
 
   }
+  const cartHandler=()=>{
+    addToCart(product,uid)
+  }
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -88,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-         <Button color="primary" variant="contained" size="large" style={{margin:15,marginLeft:160}}> {product.price}</Button>       
+         <Button color="primary" variant="contained" size="large" style={{margin:15,marginLeft:160}} onClick={cartHandler}> {product.price}</Button>       
       </CardActions>
 
     <SnackbarComponent open={open} handleClose={handleClose} title={product.title} color={color} variant="contained"></SnackbarComponent>
@@ -97,10 +103,11 @@ const useStyles = makeStyles((theme) => ({
   );
 }
 
-
 const mapDispatchToProps=(dispatch)=>{
   return({
-    addtoWishlist: (product)=>dispatch(addtoWishlist(product))
+    addtoWishlist:(product,uid)=> dispatch(addtoWishlist(product,uid)),
+    removefromWishlist:(product,uid)=> dispatch(removefromWishlist(product,uid)),
+    addToCart:(product,uid)=>dispatch(addtoCart(product,uid))
   } )
  
 }

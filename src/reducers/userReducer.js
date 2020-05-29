@@ -6,6 +6,12 @@ export const userReducer=(state=initState,actions)=>{
         case "Wishlist_Error":
             console.log(actions.err) 
             return state  
+        case "Product_Added":
+            console.log("added")
+            return state
+        case "Product_Error":
+            console.log("Error",actions.err)
+            return state
         default:
             return state
         }

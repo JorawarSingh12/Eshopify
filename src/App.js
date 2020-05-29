@@ -10,7 +10,11 @@ import Footer from './partials/Footer'
 import purple from '@material-ui/core/colors/purple';
 import { createMuiTheme,ThemeProvider } from '@material-ui/core/styles';
 import  Wishlist  from './components/Usercomponent/Wishlist';
+import  Orders  from './components/Usercomponent/Orders';
 import  Category  from './components/Category';
+import Cart from './components/Usercomponent/Cart';
+import Error from './components/Error'
+import  Create  from './components/Create';
 
 const theme = createMuiTheme({
   palette: {
@@ -34,7 +38,11 @@ function App() {
         <Route path="/payment" component={Checkout}></Route>
         <Route path="/products/:productid" component={Details}></Route>
         <Route path="/wishlist" component={Wishlist}></Route>
+        <Route path="/cart" component={Cart}></Route>
+        <Route path="/orders" component={Orders}></Route>
         <Route path="/category/:category" component={Category}></Route>
+        <Route path="/becomeSeller" component={Create}></Route>
+        <Route path="/:anypage" component={Error}></Route>
       </Switch>
       <Footer></Footer>
       </BrowserRouter>

@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
       onClose={handleMenuClose}
     >
       
-        <MenuItem onClick={handleMenuClose}><ListItemIcon><AccountBoxIcon/></ListItemIcon><NavLink to="/signup" style={{ textDecoration: 'none',color:"black"}}>SignUp </NavLink></MenuItem>
+        <MenuItem onClick={handleMenuClose}><ListItemIcon><AccountBoxIcon/></ListItemIcon><NavLink to="/signin" style={{ textDecoration: 'none',color:"black"}}>SignUp </NavLink></MenuItem>
         <MenuItem onClick={handleMenuClose}><ListItemIcon><AccountBoxIcon/></ListItemIcon><NavLink to="/signin" style={{ textDecoration: 'none',color:"black"}}>SignIn </NavLink></MenuItem>        
         </Menu>  
     }

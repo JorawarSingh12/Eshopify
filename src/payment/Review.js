@@ -6,20 +6,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
-const products = [
-  { name: 'Product 1', desc: 'A nice thing', price: '$9.99' },
-  { name: 'Product 2', desc: 'Another thing', price: '$3.45' },
-  { name: 'Product 3', desc: 'Something else', price: '$6.51' },
-  { name: 'Product 4', desc: 'Best thing of all', price: '$14.11' },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
-const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
+
+
 
 const useStyles = makeStyles((theme) => ({
   listItem: {
@@ -33,8 +21,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Review() {
+export default function Review({cardDetails,address,cart}) {
   const classes = useStyles();
+  
+  
+  const addresses = [address.address1, address.city, address.zip, address.country];
+
+  const payments = [
+    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card holder', detail: cardDetails.cardName },
+    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Expiry date', detail: cardDetails.expDate },
+  ];
+
+  
+const products = cart[0].product
+let total=0;
+cart[0].product.forEach(element => {
+  total=total+element.price;
+});
 
   return (
     <React.Fragment>
@@ -43,15 +48,15 @@ export default function Review() {
       </Typography>
       <List disablePadding>
         {products.map((product) => (
-          <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
+          <ListItem className={classes.listItem} key={product.id}>
+            <ListItemText primary={product.title} secondary={product.Brand} />
             <Typography variant="body2">{product.price}</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            {total}
           </Typography>
         </ListItem>
       </List>
@@ -60,7 +65,7 @@ export default function Review() {
           <Typography variant="h6" gutterBottom className={classes.title}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
+          <Typography gutterBottom>{address.firstName} {address.lastName}</Typography>
           <Typography gutterBottom>{addresses.join(', ')}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>

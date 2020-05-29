@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
       </CardContent>
       </CardActionArea>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" color={isWishlisted?"secondary":"white"}  onClick={wishlistHandler}>
+        <IconButton aria-label="add to favorites" color={isWishlisted?"secondary":"default"}  onClick={wishlistHandler}>
           <FavoriteIcon  />
         </IconButton>
         <IconButton aria-label="share">

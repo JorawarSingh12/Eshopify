@@ -35,15 +35,16 @@ function App() {
       <Header></Header>
       <Switch>
         <Route exact path="/Eshopify" component={Home}></Route>
-        <Route path="/signin" component={Authentication}></Route>
-        <Route path="/payment" component={Checkout}></Route>
-        <Route path="/products/:productid" component={Details}></Route>
-        <Route path="/wishlist" component={Wishlist}></Route>
-        <Route path="/cart" component={Cart}></Route>
-        <Route path="/orders" component={Orders}></Route>
-        <Route path="/category/:category" component={Category}></Route>
-        <Route path="/becomeSeller" component={Create}></Route>
-        <Route path="/:anypage" component={Error}></Route>
+        <Route path="/Eshopify/signin" component={Authentication}></Route>
+        <Route path="/Eshopify/payment" component={Checkout}></Route>
+        <Route path="/Eshopify/products/:productid" component={Details}></Route>
+        <Route path="/Eshopify/wishlist" component={Wishlist}></Route>
+        <Route path="/Eshopify/cart" component={Cart}></Route>
+        <Route path="/Eshopify/orders" component={Orders}></Route>
+        <Route path="/Eshopify/category/:category" component={Category}></Route>
+        <Route path="/Eshopify/becomeSeller" component={Create}></Route>
+        <Route path="/Eshopify/:anypage" component={Error}></Route>
+        <Route path="/:signin" component={Authentication}></Route>
       </Switch>
       <Footer></Footer>
       </BrowserRouter>

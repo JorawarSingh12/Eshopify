@@ -80,10 +80,10 @@ const useStyles = makeStyles((theme) => ({
       onClose={handleMenuClose}
     >
       
-        <MenuItem onClick={handleMenuClose}><ListItemIcon><ShoppingCartIcon/></ListItemIcon> <NavLink to="/cart" style={{ textDecoration: 'none',color:"black"}}>Your Cart</NavLink></MenuItem>
-        <MenuItem onClick={handleMenuClose}><ListItemIcon><FavoriteIcon/></ListItemIcon><NavLink to="/wishlist" style={{ textDecoration: 'none',color:"black"}}>Wishlist</NavLink></MenuItem>
-        <MenuItem onClick={handleMenuClose}><ListItemIcon><ReceiptIcon/></ListItemIcon><NavLink to="/orders" style={{ textDecoration: 'none',color:"black"}}>Orders</NavLink></MenuItem>
-        <MenuItem onClick={handleMenuClose}><ListItemIcon><BusinessIcon/></ListItemIcon><NavLink to="/becomeSeller" style={{ textDecoration: 'none',color:"black"}}>Become Seller</NavLink></MenuItem>
+        <MenuItem onClick={handleMenuClose}><ListItemIcon><ShoppingCartIcon/></ListItemIcon> <NavLink to="/Eshopify/cart" style={{ textDecoration: 'none',color:"black"}}>Your Cart</NavLink></MenuItem>
+        <MenuItem onClick={handleMenuClose}><ListItemIcon><FavoriteIcon/></ListItemIcon><NavLink to="/Eshopify/wishlist" style={{ textDecoration: 'none',color:"black"}}>Wishlist</NavLink></MenuItem>
+        <MenuItem onClick={handleMenuClose}><ListItemIcon><ReceiptIcon/></ListItemIcon><NavLink to="/Eshopify/orders" style={{ textDecoration: 'none',color:"black"}}>Orders</NavLink></MenuItem>
+        <MenuItem onClick={handleMenuClose}><ListItemIcon><BusinessIcon/></ListItemIcon><NavLink to="/Eshopify/becomeSeller" style={{ textDecoration: 'none',color:"black"}}>Become Seller</NavLink></MenuItem>
         <MenuItem onClick={logoutHandler}><ListItemIcon><ExitToAppIcon/></ListItemIcon>LogOut</MenuItem>
         </Menu>  
       }
@@ -98,8 +98,8 @@ const useStyles = makeStyles((theme) => ({
       onClose={handleMenuClose}
     >
       
-        <MenuItem onClick={handleMenuClose}><ListItemIcon><AccountBoxIcon/></ListItemIcon><NavLink to="/signin" style={{ textDecoration: 'none',color:"black"}}>SignUp </NavLink></MenuItem>
-        <MenuItem onClick={handleMenuClose}><ListItemIcon><AccountBoxIcon/></ListItemIcon><NavLink to="/signin" style={{ textDecoration: 'none',color:"black"}}>SignIn </NavLink></MenuItem>        
+        <MenuItem onClick={handleMenuClose}><ListItemIcon><AccountBoxIcon/></ListItemIcon><NavLink to="/Eshopify/signin" style={{ textDecoration: 'none',color:"black"}}>SignUp </NavLink></MenuItem>
+        <MenuItem onClick={handleMenuClose}><ListItemIcon><AccountBoxIcon/></ListItemIcon><NavLink to="/Eshopify/signin" style={{ textDecoration: 'none',color:"black"}}>SignIn </NavLink></MenuItem>        
         </Menu>  
     }
    
@@ -120,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
           </IconButton>
           <SideDrawer open={open} toggleDrawer={toggleDrawer} ></SideDrawer>
           <Typography className={classes.title} variant="h5" noWrap>
-           <NavLink to="/eshopify" style={{ textDecoration: 'none',color:"white"}}> Eshopify</NavLink>
+           <NavLink to="/Eshopify" style={{ textDecoration: 'none',color:"white"}}> Eshopify</NavLink>
           </Typography>
           {userName}
           <IconButton aria-label="search" color="inherit">

@@ -12,7 +12,7 @@ export class Home extends Component {
     render() {
         
         if(!this.props.uid)
-            return (<Redirect to="/signin"></Redirect>)
+            return (<Redirect to="/Eshopify/signin"></Redirect>)
         const skeletonCard=(<Grid item >
         <Skeleton animation="wave" variant="text" width={380} height={40}/>
         <Skeleton animation={false} variant="rect" width={380} height={368} />

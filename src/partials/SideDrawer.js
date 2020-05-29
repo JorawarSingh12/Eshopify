@@ -39,20 +39,20 @@ export default function SideDrawer({open,toggleDrawer}) {
     >
       <List className={classes.fullList}>
 
-         <MenuItem><ListItemIcon><WhatshotIcon/></ListItemIcon> <NavLink to="/todaysale" style={{ textDecoration: 'none',color:"black"}}>Today's Sale</NavLink></MenuItem>
-        <MenuItem ><ListItemIcon><CardGiftcardIcon/></ListItemIcon><NavLink to="/category/fashionwear" style={{ textDecoration: 'none',color:"black"}}>Fashionwear</NavLink></MenuItem>
-        <MenuItem ><ListItemIcon><FastfoodIcon/></ListItemIcon><NavLink to="/category/groceries" style={{ textDecoration: 'none',color:"black"}}>Groceries</NavLink></MenuItem>
-        <MenuItem ><ListItemIcon><LaptopMacIcon/></ListItemIcon><NavLink to="/category/electronics" style={{ textDecoration: 'none',color:"black"}}>Electronics</NavLink></MenuItem>
-        <MenuItem ><ListItemIcon><FavoriteIcon/></ListItemIcon><NavLink to="/category/accessories" style={{ textDecoration: 'none',color:"black"}}>Accessories</NavLink></MenuItem>
-        <MenuItem ><ListItemIcon><FilterNoneIcon/></ListItemIcon><NavLink to="/category/paintings" style={{ textDecoration: 'none',color:"black"}}>Paintings</NavLink></MenuItem>
-        <MenuItem ><ListItemIcon><EmojiPeopleIcon/></ListItemIcon><NavLink to="/category/kids" style={{ textDecoration: 'none',color:"black"}}>Kids</NavLink></MenuItem>
+         <MenuItem><ListItemIcon><WhatshotIcon/></ListItemIcon> <NavLink to="/Eshopify/todaysale" style={{ textDecoration: 'none',color:"black"}}>Today's Sale</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><CardGiftcardIcon/></ListItemIcon><NavLink to="/Eshopify/category/fashionwear" style={{ textDecoration: 'none',color:"black"}}>Fashionwear</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><FastfoodIcon/></ListItemIcon><NavLink to="/Eshopify/category/groceries" style={{ textDecoration: 'none',color:"black"}}>Groceries</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><LaptopMacIcon/></ListItemIcon><NavLink to="/Eshopify/category/electronics" style={{ textDecoration: 'none',color:"black"}}>Electronics</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><FavoriteIcon/></ListItemIcon><NavLink to="/Eshopify/category/accessories" style={{ textDecoration: 'none',color:"black"}}>Accessories</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><FilterNoneIcon/></ListItemIcon><NavLink to="/Eshopify/category/paintings" style={{ textDecoration: 'none',color:"black"}}>Paintings</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><EmojiPeopleIcon/></ListItemIcon><NavLink to="/Eshopify/category/kids" style={{ textDecoration: 'none',color:"black"}}>Kids</NavLink></MenuItem>
       </List>
       <Divider />
       <List>
-      <MenuItem ><ListItemIcon><ShoppingCartIcon/></ListItemIcon> <NavLink to="/cart" style={{ textDecoration: 'none',color:"black"}}>Your Cart</NavLink></MenuItem>
-        <MenuItem ><ListItemIcon><FavoriteIcon/></ListItemIcon><NavLink to="/wishlist" style={{ textDecoration: 'none',color:"black"}}>Wishlist</NavLink></MenuItem>
-        <MenuItem ><ListItemIcon><ReceiptIcon/></ListItemIcon><NavLink to="/orders" style={{ textDecoration: 'none',color:"black"}}>Orders</NavLink></MenuItem>
-        <MenuItem ><ListItemIcon><BusinessIcon/></ListItemIcon><NavLink to="/offers" style={{ textDecoration: 'none',color:"black"}}>Special Offers</NavLink></MenuItem>
+      <MenuItem ><ListItemIcon><ShoppingCartIcon/></ListItemIcon> <NavLink to="/Eshopify/cart" style={{ textDecoration: 'none',color:"black"}}>Your Cart</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><FavoriteIcon/></ListItemIcon><NavLink to="/Eshopify/wishlist" style={{ textDecoration: 'none',color:"black"}}>Wishlist</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><ReceiptIcon/></ListItemIcon><NavLink to="/Eshopify/orders" style={{ textDecoration: 'none',color:"black"}}>Orders</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><BusinessIcon/></ListItemIcon><NavLink to="/Eshopify/offers" style={{ textDecoration: 'none',color:"black"}}>Special Offers</NavLink></MenuItem>
       </List>
     </div>
   );

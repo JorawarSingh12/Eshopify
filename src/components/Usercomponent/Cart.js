@@ -40,7 +40,7 @@ class Cart extends Component {
         return ( 
             <div>  
                   <Button variant="contained" color="secondary" size="large" style={{marginTop: 40}}>
-                         <NavLink to="/payment"  style={{textDecoration:"none",color:"white"}}>
+                         <NavLink to="/Eshopify/payment"  style={{textDecoration:"none",color:"white"}}>
                             Order Now
                          </NavLink>
                    </Button>

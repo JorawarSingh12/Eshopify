@@ -13,11 +13,24 @@ class Create extends Component {
              Brand:"",
              description:"",
              price:"",
-             type:"electronics"
+             type:"electronics",
+             file:"",
+             link:""
         }
     }
-    
+
+    fileHandler=(e)=>{
+        this.setState({
+            [e.target.name]: e.target.files[0]
+        })
+    }
+   
+
     render() {
+        console.log(this.props.isProductError)
+        let error=<div></div>
+        if(this.props.isProductError)
+            error=<div>Error Creating Product ! Please Try Later </div>            
         this.changeHandler= (e)=>{
             this.setState({
                 [e.target.name] : e.target.value
@@ -26,18 +39,20 @@ class Create extends Component {
         }
         this.submitHandler= (e)=>{
             e.preventDefault()
-            console.log(this.props)
+            console.log(this.state)
            this.props.createProduct(this.state,this.props.uid)
             
         }
+        
         return (
             <div style={{display:'flex',flexDirection:'column',alignItems:"center"}}>
+                {error}
                 <h3>Add Your Product to sell on Eshopify</h3>
-                <form onSubmit={this.submitHandler }  style={{margin:20,padding:60,maxWidth:450,border: "1px solid black"}}>
-                <TextField name="title" fullWidth onChange={this.changeHandler} label="Product Name" variant="outlined" />
-                <TextField name="Brand" style={{marginTop:30}} fullWidth onChange={this.changeHandler}  label="Brand" variant="outlined" />
-                <TextField name="description" style={{marginTop:30}} fullWidth onChange={this.changeHandler}  label="Description" variant="outlined" />
-                <TextField name="price" style={{marginTop:30}} fullWidth onChange={this.changeHandler}  label="Price" variant="outlined" /> 
+                <form  onSubmit={this.submitHandler }  style={{margin:20,padding:60,maxWidth:450,border: "1px solid black"}}>
+                <TextField name="title" fullWidth onChange={this.changeHandler} label="Product Name" variant="outlined" required/>
+                <TextField name="Brand" style={{marginTop:30}} fullWidth onChange={this.changeHandler}  label="Brand" variant="outlined" required />
+                <TextField name="description" style={{marginTop:30}} fullWidth onChange={this.changeHandler}  label="Description" variant="outlined"required />
+                <TextField name="price" style={{marginTop:30}} fullWidth onChange={this.changeHandler}  label="Price" variant="outlined" required /> 
                 <Select
             labelId="Type"
             id="demo-simple-select"
@@ -46,11 +61,23 @@ class Create extends Component {
             onChange={this.changeHandler}
             fullWidth
             style={{marginTop:30}}
+            required
         >
           <MenuItem value={"electronics"}>Electronics</MenuItem>
           <MenuItem value={"fashionwear"}>Fashionwear</MenuItem>
+          <MenuItem value={"paintings"}>Paintings</MenuItem>
           <MenuItem value={"toys"}>Toys</MenuItem>
+          <MenuItem value={"groceries"}>Groceries</MenuItem>
+          <MenuItem value={"paintings"}>Paintings</MenuItem>
         </Select> 
+        <TextField
+            required
+               style={{marginTop:30}}
+              name="file" label="Image"
+             type="file" id="image" 
+             onChange={this.fileHandler}
+           />
+ 
                 <Button style={{marginTop:30,padding:10}} fullWidth type="submit" variant="contained" color="primary" >Submit</Button>
                 </form>        
             </div>
@@ -59,9 +86,15 @@ class Create extends Component {
 }
 
 
-const mapStateToProps = (state) => ({
-    uid:state.firebase.auth.uid
-})
+const mapStateToProps = (state) => {
+    console.log(state)
+    return({
+    uid:state.firebase.auth.uid,
+    isProductError:state.user.isProductError
+ })
+
+   
+}
 
 const mapDispatchToProps = (dispatch)=>({
     createProduct: (product)=>dispatch(createProduct(product))

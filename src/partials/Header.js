@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 
   toolbar: {
     minHeight: 128,
-
     alignItems: 'flex-start',
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
@@ -103,7 +102,8 @@ const useStyles = makeStyles((theme) => ({
         <MenuItem onClick={handleMenuClose}><ListItemIcon><AccountBoxIcon/></ListItemIcon><NavLink to="/signin" style={{ textDecoration: 'none',color:"black"}}>SignIn </NavLink></MenuItem>        
         </Menu>  
     }
-
+   
+    const userName=props.userName?<Typography style={{paddingTop:10,paddingRight:10}}> {props.userName}</Typography>:null
 
   return (
     <div className={classes.root}>
@@ -122,6 +122,7 @@ const useStyles = makeStyles((theme) => ({
           <Typography className={classes.title} variant="h5" noWrap>
            <NavLink to="/eshopify" style={{ textDecoration: 'none',color:"white"}}> Eshopify</NavLink>
           </Typography>
+          {userName}
           <IconButton aria-label="search" color="inherit">
             <SearchIcon />
           </IconButton>
@@ -143,11 +144,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 const mapStateToProps=(state)=>{
-
+  
   const isEmpty=state.firebase.auth.isEmpty
   return (
    {
-      isLoggedIn: !(isEmpty)
+         
+      isLoggedIn: !(isEmpty),
+      userName: isEmpty?null:state.firebase.auth.displayName
    } 
   )
 }

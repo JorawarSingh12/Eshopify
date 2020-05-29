@@ -10,6 +10,7 @@ import {Redirect} from 'react-router-dom'
 export class Home extends Component {
 
     render() {
+        
         if(!this.props.uid)
             return (<Redirect to="/signin"></Redirect>)
         const skeletonCard=(<Grid item >
@@ -19,8 +20,8 @@ export class Home extends Component {
         
         </Grid>)
     
-            
-            if(!this.props.electronics || !this.props.fashionwear)
+           
+            if(!this.props.electronics ||  !this.props.groceries || ! this.props.wishlist || !this.props.wishlist[0].product)
                 return (
             <Grid container spacing={3} style={{marginTop:60}}>
                 
@@ -41,7 +42,7 @@ export class Home extends Component {
         
         
         
-        const items=['Electronics','FashionWear'].map((item,index)=>{
+        const items=['Electronics','FashionWear','Groceries','Toys','Paintings'].map((item,index)=>{
             let Background=(index%2===0)?
             Background1:Background2
             return (
@@ -50,10 +51,12 @@ export class Home extends Component {
                     <Grid container   style={{ marginTop:40}} >
                     {
                         this.props[item.toLowerCase()].map((product,index)=>{
+                            const x=this.props.wishlist[0].product.filter(a=>a.id===product.id)
+                            const isWishlisted=x.length===1?true:false
                             return(
                                 
                                 <Grid key={index} item lg={3} sm={12} xs={12} md={6}  >
-                                <MaterialCard  product={product} uid={this.props.uid}></MaterialCard>
+                                <MaterialCard  product={product} uid={this.props.uid} isWishlisted={isWishlisted}></MaterialCard>
                                 </Grid>
                                
                             )
@@ -77,10 +80,14 @@ export class Home extends Component {
 const mapStateToProps = (state) => {
    
     return ({
-      electronics: state.firestore.ordered?state.firestore.ordered.electronics:null ,
-      fashionwear: state.firestore.ordered?state.firestore.ordered.fashionwear:null,
+      electronics: state.firestore.ordered.electronics?state.firestore.ordered.electronics:null ,
+      fashionwear: state.firestore.ordered.fashionwear?state.firestore.ordered.fashionwear:null,
+      toys: state.firestore.ordered.toys?state.firestore.ordered.toys:null ,
+      groceries: state.firestore.ordered.groceries?state.firestore.ordered.groceries:null,
+      paintings: state.firestore.ordered.paintings?state.firestore.ordered.paintings:null,
       uid: state.firebase.auth.uid,
-     
+      wishlist:state.firestore.ordered.wishlist?state.firestore.ordered.wishlist.filter((doc)=>doc.id===state.firebase.auth.uid):null,
+
      } )
   
   }
@@ -92,7 +99,11 @@ const mapStateToProps = (state) => {
   firestoreConnect([
     {collection: 'electronics'},
     {collection: 'fashionwear'},
-    {collection: 'cart'}
+    {collection: 'toys'},
+    {collection: 'paintings'},
+    {collection: 'groceries'},
+    {collection: 'wishlist'},
+    
   ])
       )(Home)
   

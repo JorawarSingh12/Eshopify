@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import firebase from '../config/fbConfig'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
-
 class Authentication extends Component {
   constructor(props) {
     super(props)
@@ -51,5 +50,5 @@ class Authentication extends Component {
   }
 }
 
-export default Authentication
-  
+
+export default  Authentication

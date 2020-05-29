@@ -15,8 +15,6 @@ import SnackbarComponent from '../components/SnackbarComponent'
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { addtoWishlist,removefromWishlist, addtoCart } from '../actions/userActions';
 import { connect } from 'react-redux'
-import { firestoreConnect} from 'react-redux-firebase'
-import {compose} from 'redux'
 import { Button } from '@material-ui/core';
 
 
@@ -34,10 +32,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
- function MaterialCard({product,addtoWishlist,removefromWishlist,uid,addToCart}) {
+ function MaterialCard({product,addtoWishlist,removefromWishlist,uid,addToCart,isWishlisted}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [color, setColor] = React.useState(false);
+  console.log(isWishlisted)
+ 
+  
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -46,22 +46,22 @@ const useStyles = makeStyles((theme) => ({
     setOpen(false);
   };
   const wishlistHandler=()=>{
-    if(color===true)
+    
+    if(isWishlisted===true)
     {
-      setColor(false)
       removefromWishlist(product,uid)
     }
     else{
-      setColor(true)
+      
       addtoWishlist(product,uid)
     }
     setOpen(true)
-    
-
   }
   const cartHandler=()=>{
     addToCart(product,uid)
   }
+
+  
 
   return (
     <Card className={classes.root}>
@@ -78,8 +78,8 @@ const useStyles = makeStyles((theme) => ({
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        image= {product.link?product.link: "image.jpg"}
+        title={product.title}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -88,8 +88,8 @@ const useStyles = makeStyles((theme) => ({
       </CardContent>
       </CardActionArea>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites"  onClick={wishlistHandler}>
-          <FavoriteIcon  color={color?"secondary":"inherit"}/>
+        <IconButton aria-label="add to favorites" color={isWishlisted?"secondary":"inherit"}  onClick={wishlistHandler}>
+          <FavoriteIcon  />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
          <Button color="primary" variant="contained" size="large" style={{margin:15,marginLeft:160}} onClick={cartHandler}> {product.price}</Button>       
       </CardActions>
 
-    <SnackbarComponent open={open} handleClose={handleClose} title={product.title} color={color} variant="contained"></SnackbarComponent>
+    <SnackbarComponent open={open} handleClose={handleClose} title={product.title} variant="contained" color={isWishlisted}></SnackbarComponent>
     </Card>
     
   );
@@ -107,14 +107,12 @@ const mapDispatchToProps=(dispatch)=>{
   return({
     addtoWishlist:(product,uid)=> dispatch(addtoWishlist(product,uid)),
     removefromWishlist:(product,uid)=> dispatch(removefromWishlist(product,uid)),
-    addToCart:(product,uid)=>dispatch(addtoCart(product,uid))
+    addToCart:(product,uid)=>dispatch(addtoCart(product,uid)),
+    
   } )
  
 }
 
-export default compose(
-  connect(null,mapDispatchToProps),
-firestoreConnect([
-  {collection: 'wishlist'}
-])
-    )(MaterialCard)
+export default 
+  connect(null,mapDispatchToProps)
+    (MaterialCard)

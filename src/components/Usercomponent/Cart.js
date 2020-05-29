@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import MaterialCard from '../MaterialCard'
-import {Grid} from '@material-ui/core'
+import {Grid, Button} from '@material-ui/core'
 import Skeleton from '@material-ui/lab/Skeleton';
-import {Redirect} from 'react-router-dom'
+import {Redirect, NavLink} from 'react-router-dom'
 class Cart extends Component {
     render() {
         if(!this.props.uid)
@@ -34,12 +34,21 @@ class Cart extends Component {
                 <Grid key={product.id}  item lg={3} sm={12} xs={12} md={6}>
                 <MaterialCard product={product} uid={this.props.uid}></MaterialCard>
                 </Grid>
+                
             )
         })
         return ( 
-           <Grid container style={{ marginTop:40}}>                
-           {productList}
-           </Grid>
+            <div>  
+                  <Button variant="contained" color="secondary" size="large" style={{marginTop: 40}}>
+                         <NavLink to="/payment"  style={{textDecoration:"none",color:"white"}}>
+                            Order Now
+                         </NavLink>
+                   </Button>
+                <Grid container style={{ marginTop:40}}>                
+                {productList}
+                </Grid>
+           </div>
+
         )
     }
 }

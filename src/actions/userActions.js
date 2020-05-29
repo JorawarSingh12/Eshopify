@@ -88,3 +88,15 @@ export const removefromCart=(product,uid)=>{
            .catch((err)=> dispatch({type:"Wishlist_Error",err}))   
     }
 }
+
+export const addUser=(user)=>{
+  return (dispatch,getState,{getFirebase,getFirestore})=>
+  {
+      
+         const firestore=getFirestore();
+        firestore.collection("users").add(user)
+                  .then(dispatch({type:"Profile_Added"}))
+                  .catch((err)=> dispatch({type:"Profile_Error",err}))
+    }
+
+}

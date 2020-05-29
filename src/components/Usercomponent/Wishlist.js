@@ -32,7 +32,7 @@ class Wishlist extends Component {
         const productList=this.props.wishlist.length===0?<div>No product in Wishlist !</div>:this.props.wishlist[0].product.map(product=>{
             return (
                 <Grid key={product.id}  item lg={3} sm={12} xs={12} md={6}>
-                <MaterialCard product={product} uid={this.props.uid}></MaterialCard>
+                <MaterialCard product={product} uid={this.props.uid} isWishlisted={true}></MaterialCard>
                 </Grid>
             )
         })

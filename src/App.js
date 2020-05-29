@@ -34,7 +34,7 @@ function App() {
       <BrowserRouter>
       <Header></Header>
       <Switch>
-        <Route exact path="/eshopify" component={Home}></Route>
+        <Route exact path="/Eshopify" component={Home}></Route>
         <Route path="/signin" component={Authentication}></Route>
         <Route path="/payment" component={Checkout}></Route>
         <Route path="/products/:productid" component={Details}></Route>

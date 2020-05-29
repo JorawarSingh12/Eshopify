@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/jorawarsinghsaini.github.io/Eshopify/static/css/main.5f361e03.chunk.css",
-    "main.js": "/jorawarsinghsaini.github.io/Eshopify/static/js/main.0a2075a3.chunk.js",
-    "main.js.map": "/jorawarsinghsaini.github.io/Eshopify/static/js/main.0a2075a3.chunk.js.map",
-    "runtime-main.js": "/jorawarsinghsaini.github.io/Eshopify/static/js/runtime-main.ddfb4a05.js",
-    "runtime-main.js.map": "/jorawarsinghsaini.github.io/Eshopify/static/js/runtime-main.ddfb4a05.js.map",
-    "static/js/2.ea17e61f.chunk.js": "/jorawarsinghsaini.github.io/Eshopify/static/js/2.ea17e61f.chunk.js",
-    "static/js/2.ea17e61f.chunk.js.map": "/jorawarsinghsaini.github.io/Eshopify/static/js/2.ea17e61f.chunk.js.map",
-    "index.html": "/jorawarsinghsaini.github.io/Eshopify/index.html",
-    "precache-manifest.3b0503ef035b3cd24d2c2ba8625c69e0.js": "/jorawarsinghsaini.github.io/Eshopify/precache-manifest.3b0503ef035b3cd24d2c2ba8625c69e0.js",
-    "service-worker.js": "/jorawarsinghsaini.github.io/Eshopify/service-worker.js",
-    "static/css/main.5f361e03.chunk.css.map": "/jorawarsinghsaini.github.io/Eshopify/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.ea17e61f.chunk.js.LICENSE.txt": "/jorawarsinghsaini.github.io/Eshopify/static/js/2.ea17e61f.chunk.js.LICENSE.txt"
+    "main.css": "/Eshopify/static/css/main.5f361e03.chunk.css",
+    "main.js": "/Eshopify/static/js/main.28ba5b23.chunk.js",
+    "main.js.map": "/Eshopify/static/js/main.28ba5b23.chunk.js.map",
+    "runtime-main.js": "/Eshopify/static/js/runtime-main.a48b48df.js",
+    "runtime-main.js.map": "/Eshopify/static/js/runtime-main.a48b48df.js.map",
+    "static/js/2.ea17e61f.chunk.js": "/Eshopify/static/js/2.ea17e61f.chunk.js",
+    "static/js/2.ea17e61f.chunk.js.map": "/Eshopify/static/js/2.ea17e61f.chunk.js.map",
+    "index.html": "/Eshopify/index.html",
+    "precache-manifest.58f219bcd5144cde524e894cf932f871.js": "/Eshopify/precache-manifest.58f219bcd5144cde524e894cf932f871.js",
+    "service-worker.js": "/Eshopify/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/Eshopify/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.ea17e61f.chunk.js.LICENSE.txt": "/Eshopify/static/js/2.ea17e61f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.ddfb4a05.js",
+    "static/js/runtime-main.a48b48df.js",
     "static/js/2.ea17e61f.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.0a2075a3.chunk.js"
+    "static/js/main.28ba5b23.chunk.js"
   ]
 }

@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Eshopify/static/css/main.5f361e03.chunk.css",
-    "main.js": "/Eshopify/static/js/main.335fe69d.chunk.js",
-    "main.js.map": "/Eshopify/static/js/main.335fe69d.chunk.js.map",
+    "main.css": "/Eshopify/static/css/main.7c9ee1a5.chunk.css",
+    "main.js": "/Eshopify/static/js/main.060065d9.chunk.js",
+    "main.js.map": "/Eshopify/static/js/main.060065d9.chunk.js.map",
     "runtime-main.js": "/Eshopify/static/js/runtime-main.a48b48df.js",
     "runtime-main.js.map": "/Eshopify/static/js/runtime-main.a48b48df.js.map",
-    "static/js/2.ea17e61f.chunk.js": "/Eshopify/static/js/2.ea17e61f.chunk.js",
-    "static/js/2.ea17e61f.chunk.js.map": "/Eshopify/static/js/2.ea17e61f.chunk.js.map",
+    "static/js/2.a4de805d.chunk.js": "/Eshopify/static/js/2.a4de805d.chunk.js",
+    "static/js/2.a4de805d.chunk.js.map": "/Eshopify/static/js/2.a4de805d.chunk.js.map",
     "index.html": "/Eshopify/index.html",
-    "precache-manifest.9d6518a9617bee4b47259f45f01c55d5.js": "/Eshopify/precache-manifest.9d6518a9617bee4b47259f45f01c55d5.js",
+    "precache-manifest.8e6df69b7b08b8435d1c54ad5052dadc.js": "/Eshopify/precache-manifest.8e6df69b7b08b8435d1c54ad5052dadc.js",
     "service-worker.js": "/Eshopify/service-worker.js",
-    "static/css/main.5f361e03.chunk.css.map": "/Eshopify/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.ea17e61f.chunk.js.LICENSE.txt": "/Eshopify/static/js/2.ea17e61f.chunk.js.LICENSE.txt"
+    "static/css/main.7c9ee1a5.chunk.css.map": "/Eshopify/static/css/main.7c9ee1a5.chunk.css.map",
+    "static/js/2.a4de805d.chunk.js.LICENSE.txt": "/Eshopify/static/js/2.a4de805d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a48b48df.js",
-    "static/js/2.ea17e61f.chunk.js",
-    "static/css/main.5f361e03.chunk.css",
-    "static/js/main.335fe69d.chunk.js"
+    "static/js/2.a4de805d.chunk.js",
+    "static/css/main.7c9ee1a5.chunk.css",
+    "static/js/main.060065d9.chunk.js"
   ]
 }

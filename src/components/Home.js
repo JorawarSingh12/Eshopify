@@ -21,7 +21,7 @@ export class Home extends Component {
         </Grid>)
     
            
-            if(!this.props.electronics ||  !this.props.groceries || ! this.props.wishlist || ! this.props.wishlist[0] || !this.props.wishlist[0].product)
+            if(!this.props.laptops ||  !this.props.mobiles || ! this.props.accessories)
                 return (
             <Grid container spacing={3} style={{marginTop:60}}>
                 
@@ -36,29 +36,20 @@ export class Home extends Component {
                 {skeletonCard}
                 {skeletonCard}            
             </Grid>
-                )
-        const Background1="https://static9.depositphotos.com/1586254/1106/i/950/depositphotos_11065945-stock-photo-electronic-components-on-white-background.jpg"
-        const Background2="https://i.pinimg.com/originals/98/8c/1e/988c1e07f1f6ca0676a31f8fb1029b09.png"
-        
-        
-        
-        const items=['Electronics','FashionWear','Groceries','Toys','Paintings'].map((item,index)=>{
-            let Background=(index%2===0)?
-            Background1:Background2
+                )    
+        const items=['Laptops','Mobiles','Accessories'].map((item,index)=>{
             return (
-                <div key={index} style={{marginBottom:50,marginLeft:10,marginRight:10}}>
-                    <Paper elevation={3} style={{padding:20,marginTop:40,marginBottom: 30,paddingLeft: 50,backgroundImage: `url(${Background})` } } ><Typography variant="body1" color="primary" align="left">{item}</Typography></Paper>
-                    <Grid container   style={{ marginTop:40}} >
+                <div key={index} style={{marginBottom:30,marginLeft:10,marginRight:10}}>
+                    <Paper  elevation={3} style={{padding:15,marginBottom: 20,paddingLeft: 30,backgroundColor: "#393e46",opacity:0.8 } } ><Typography variant="body1" color="primary" align="left">{item}</Typography></Paper>
+                    <Grid container   style={{ marginTop:10}} >
                     {
                         this.props[item.toLowerCase()].map((product,index)=>{
-                            const x=this.props.wishlist[0].product.filter(a=>a.id===product.id)
-                            const isWishlisted=x.length===1?true:false
-                            return(
-                                
+                            const x= (this.props.wishlist && this.props.wishlist[0]) ?this.props.wishlist[0].product.filter(a=>a.id===product.id):0
+                            const isWishlisted=x && x.length===1?true:false
+                            return(       
                                 <Grid key={index} item lg={3} sm={12} xs={12} md={6}  >
                                 <MaterialCard  product={product} uid={this.props.uid} isWishlisted={isWishlisted}></MaterialCard>
-                                </Grid>
-                               
+                                </Grid>  
                             )
                         })
                     }
@@ -80,11 +71,9 @@ export class Home extends Component {
 const mapStateToProps = (state) => {
    
     return ({
-      electronics: state.firestore.ordered.electronics?state.firestore.ordered.electronics:null ,
-      fashionwear: state.firestore.ordered.fashionwear?state.firestore.ordered.fashionwear:null,
-      toys: state.firestore.ordered.toys?state.firestore.ordered.toys:null ,
-      groceries: state.firestore.ordered.groceries?state.firestore.ordered.groceries:null,
-      paintings: state.firestore.ordered.paintings?state.firestore.ordered.paintings:null,
+      laptops: state.firestore.ordered.laptops?state.firestore.ordered.laptops:null ,
+      mobiles: state.firestore.ordered.mobiles?state.firestore.ordered.mobiles:null,
+      accessories: state.firestore.ordered.accessories?state.firestore.ordered.accessories:null ,
       uid: state.firebase.auth.uid,
       wishlist:state.firestore.ordered.wishlist?state.firestore.ordered.wishlist.filter((doc)=>doc.id===state.firebase.auth.uid):null,
 
@@ -97,11 +86,9 @@ const mapStateToProps = (state) => {
   export default compose(
     connect(mapStateToProps),
   firestoreConnect([
-    {collection: 'electronics'},
-    {collection: 'fashionwear'},
-    {collection: 'toys'},
-    {collection: 'paintings'},
-    {collection: 'groceries'},
+    {collection: 'laptops'},
+    {collection: 'mobiles'},
+    {collection: 'accessories'},
     {collection: 'wishlist'},
     
   ])

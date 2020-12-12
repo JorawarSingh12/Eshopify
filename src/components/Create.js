@@ -63,12 +63,9 @@ class Create extends Component {
             style={{marginTop:30}}
             required
         >
-          <MenuItem value={"electronics"}>Electronics</MenuItem>
-          <MenuItem value={"fashionwear"}>Fashionwear</MenuItem>
-          <MenuItem value={"paintings"}>Paintings</MenuItem>
-          <MenuItem value={"toys"}>Toys</MenuItem>
-          <MenuItem value={"groceries"}>Groceries</MenuItem>
-          <MenuItem value={"paintings"}>Paintings</MenuItem>
+          <MenuItem value={"laptops"}>Laptops</MenuItem>
+          <MenuItem value={"mobiles"}>Mobiles</MenuItem>
+          <MenuItem value={"accessories"}>Accessories</MenuItem>
         </Select> 
         <TextField
             required

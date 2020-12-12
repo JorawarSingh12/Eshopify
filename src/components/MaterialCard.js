@@ -21,22 +21,22 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 const useStyles = makeStyles((theme) => ({
   root: {
    marginBottom:30,
-   maxWidth:350
+   maxWidth:350,
+   height:350,
+   backgroundColor: '#f4f4f2',
+   marginBottom: 40,
   },
   media: {
-    height: 0,
+    height: 100,
     paddingTop: '56.25%', // 16:9
   },
-  avatar: {
-    backgroundColor: red[500],
-  },
+ 
 }));
 
  function MaterialCard({product,addtoWishlist,removefromWishlist,uid,addToCart,isWishlisted}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
- // console.log(isWishlisted)
-  const [cart,setCart]=React.useState(null)
+  const [open2, setOpen2] = React.useState(false);
   
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     }
 
     setOpen(false);
+    setOpen2(false);
   };
   const wishlistHandler=()=>{
     
@@ -59,45 +60,33 @@ const useStyles = makeStyles((theme) => ({
   }
   const cartHandler=()=>{
     
+    setOpen2(true)
     addToCart(product,uid)
-    setCart(true)
   }
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {product.Brand[0]}
-          </Avatar>
-        }
-       
-        title={product.title}
-        subheader={product.Brand}
-      />
       <CardMedia
         className={classes.media}
         image= {product.link?product.link: "image.jpg"}
         title={product.title}
       />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {product.description}
-        </Typography>
-      </CardContent>
+  <CardHeader
+       
+       title={product.title}
+     />
       </CardActionArea>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" color={isWishlisted?"secondary":"default"}  onClick={wishlistHandler}>
+        <IconButton aria-label="add to favorites" color={isWishlisted?"primary":"default"}  onClick={wishlistHandler}>
           <FavoriteIcon  />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-         <Button color="primary" variant="contained" size="large" style={{margin:15,marginLeft:160,padding:10}} onClick={cartHandler}>{cart?<CheckCircleIcon/>:null}  {product.price}</Button>       
+        
+         <Button color="secondary" variant="contained" size="large" style={{margin:15,marginLeft:200,padding:10}} onClick={cartHandler}>  {product.price}</Button>       
       </CardActions>
 
     <SnackbarComponent open={open} handleClose={handleClose} title={product.title} variant="contained" color={isWishlisted} ></SnackbarComponent>
+    <SnackbarComponent open={open2} handleClose={handleClose} title={product.title} variant="contained" color="default"  ></SnackbarComponent>
     </Card>
     
   );

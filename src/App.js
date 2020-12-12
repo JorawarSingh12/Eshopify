@@ -18,10 +18,10 @@ import  Create  from './components/Create';
 const theme = createMuiTheme({
   palette: {
     primary: {
-     main: "#ec407a",
+     main: "#ffd369",
     },
     secondary: {
-      main: '#f44336',
+      main: '#fcf8ec',
     },
   },
 });
@@ -35,16 +35,17 @@ function App() {
       <Header></Header>
       <Switch>
         <Route exact path="/Eshopify" component={Home}></Route>
-        <Route path="/Eshopify/signin" component={Authentication}></Route>
+        <Route path="/signin" component={Authentication}></Route>
         <Route path="/Eshopify/payment" component={Checkout}></Route>
         <Route path="/Eshopify/products/:productid" component={Details}></Route>
         <Route path="/Eshopify/wishlist" component={Wishlist}></Route>
         <Route path="/Eshopify/cart" component={Cart}></Route>
         <Route path="/Eshopify/orders" component={Orders}></Route>
         <Route path="/Eshopify/category/:category" component={Category}></Route>
-        <Route path="/Eshopify/becomeSeller" component={Create}></Route>
+        <Route path="/Eshopify/becomeSeller" component={Create}></Route>         
+        <Route path="/Eshopify/signin" component={Authentication}></Route>
         <Route path="/Eshopify/:anypage" component={Error}></Route>
-        <Route path="/:signin" component={Authentication}></Route>
+        
       </Switch>
       <Footer></Footer>
       </BrowserRouter>

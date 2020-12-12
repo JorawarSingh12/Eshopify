@@ -79,11 +79,8 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
   firestoreConnect([
-    {collection: 'electronics'},
-    {collection: 'fashionwear'},
-    {collection: 'toys'},
-    {collection: 'paintings'},
-    {collection: 'groceries'},
-    {collection: 'wishlist'},
+    {collection: 'laptops'},
+    {collection: 'mobiles'},
+    {collection: 'accessories'},
   ])
       )(Category)

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import firebase from '../config/fbConfig'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 class Authentication extends Component {
   constructor(props) {
-    super(props)
-  
+  super(props)
     this.state = {
       uiConfig :{
         callbacks: {
@@ -38,8 +39,10 @@ class Authentication extends Component {
       }
     }
   }
-  
+
   render() {
+    if(this.props.uid)
+            return (<Redirect to="/Eshopify"></Redirect>)
     return (
       <div >
         <StyledFirebaseAuth uiConfig={this.state.uiConfig} firebaseAuth={firebase.auth()}/>
@@ -50,5 +53,11 @@ class Authentication extends Component {
   }
 }
 
-
-export default  Authentication
+const mapStateToProps = (state) => {
+  return ({
+    uid: state.firebase.auth.uid,
+    
+  } )
+  
+}
+export default connect(mapStateToProps) (Authentication)

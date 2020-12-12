@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import MenuItem from '@material-ui/core/MenuItem';
 import {NavLink} from 'react-router-dom'
@@ -20,25 +19,21 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import {connect} from 'react-redux'
 import firebase from '../config/fbConfig'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    padding: 42,
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
   },
-
-  toolbar: {
-    minHeight: 128,
-    alignItems: 'flex-start',
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-    alignSelf: 'flex-end',
-  },
+  iconbutton: {
+    position: "absolute",
+    right: 30
+  }
 }));
+
 
  function Header(props) {
   const classes = useStyles();
@@ -104,12 +99,9 @@ const useStyles = makeStyles((theme) => ({
     }
    
     const userName=props.userName?<Typography style={{paddingTop:10,paddingRight:10}}> {props.userName}</Typography>:null
-
-  return (
-    <div className={classes.root}>
-      <AppBar position="sticky" >
-        <Toolbar  className={classes.toolbar}>
-          <IconButton
+    const sidebar = props.isLoggedIn?
+    <Fragment>
+    <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
@@ -119,14 +111,17 @@ const useStyles = makeStyles((theme) => ({
             <MenuIcon />
           </IconButton>
           <SideDrawer open={open} toggleDrawer={toggleDrawer} ></SideDrawer>
-          <Typography className={classes.title} variant="h5" noWrap>
-           <NavLink to="/Eshopify" style={{ textDecoration: 'none',color:"white"}}> Eshopify</NavLink>
-          </Typography>
-          {userName}
-          <IconButton aria-label="search" color="inherit">
-            <SearchIcon />
-          </IconButton>
+          
+        </Fragment>
+          :null
+  return (
+    <div className={classes.root}>
+      <AppBar position="fixed" >
+      <Toolbar  className={classes.toolbar}>  
+          {sidebar}
+          <Typography align="center" variant="h5"><NavLink to="/eshopify" style={{ textDecoration: 'none',color:"white"}}>Eshopify</NavLink> </Typography>
           <IconButton 
+          className={classes.iconbutton}
           aria-label="display more actions" 
           edge="end" 
           color="inherit"
@@ -150,7 +145,6 @@ const mapStateToProps=(state)=>{
    {
          
       isLoggedIn: !(isEmpty),
-      userName: isEmpty?null:state.firebase.auth.displayName
    } 
   )
 }

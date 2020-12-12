@@ -53,16 +53,7 @@ function AuthIsLoaded({ children }) {
   if (!isLoaded(auth)) return <div style={{marginLeft:"50%",paddingTop:"350px"}}>
   <CircularProgress color="secondary" ></CircularProgress>
 </div>;
-// if(isEmpty(auth))
-//       return (
-//       <div>
-//         <Authentication></Authentication>
-//         <Footer></Footer>
-//       </div>
-//       )
-
       return children
-
 }
 
 

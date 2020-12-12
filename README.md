@@ -1,68 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Eshopify
 
-## Available Scripts
+This project (version 1) is live at : https://jorawarsinghsaini.github.io/Eshopify/
 
-In the project directory, you can run:
+### Main Home Page
+![](images/1.png)
+### Checkout Page
+![](images/4.png)
+### Order Summary
+![](images/5.png)
+### Card and Shipping Details
+![](images/6.png)
+### Order Placement Completed Page
+![](images/7.png)
+### Side Bar for easy access
+![](images/2.png)
+### Various Options when logged In
+![](images/3.png)
 
-### `npm start`
+* This is an e-commerce website built with React and Google Firebase Technologies.
+* Cloud Storage is used to store images of different products.
+* Google Authentication is used for authentication purpose.
+* Cloud Store is used to store all the products on the cloud.
+* UI is developed with the help of Material UI.
+* Laptops and mobile phones can be purchased at with ease.
+* The product currently shown are for demonstration purposes.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Goals for next commit :
+1. Mail when order placement completed
+2. Complete Product Description Page
+3. Shareable Button on product description
+4. Quantity option in card component
+5. Zoomable Images in product description
+6. Search option for easily searching a product
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Project Developer - Jorawar Singh

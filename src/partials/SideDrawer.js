@@ -35,9 +35,9 @@ export default function SideDrawer({open,toggleDrawer}) {
       onKeyDown={toggleDrawer( false)}
     >
       <List className={classes.fullList}>
-        <MenuItem ><ListItemIcon><LaptopMacIcon/></ListItemIcon><NavLink to="/Eshopify/category/Laptops" style={{ textDecoration: 'none',color:"black"}}>Laptops</NavLink></MenuItem>
-        <MenuItem ><ListItemIcon><CardGiftcardIcon/></ListItemIcon><NavLink to="/Eshopify/category/Mobiles" style={{ textDecoration: 'none',color:"black"}}>Mobiles</NavLink></MenuItem>
-        <MenuItem ><ListItemIcon><FilterNoneIcon/></ListItemIcon><NavLink to="/Eshopify/category/Accessories" style={{ textDecoration: 'none',color:"black"}}>Accessories</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><LaptopMacIcon/></ListItemIcon><NavLink to="/Eshopify/category/laptops" style={{ textDecoration: 'none',color:"black"}}>Laptops</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><CardGiftcardIcon/></ListItemIcon><NavLink to="/Eshopify/category/mobiles" style={{ textDecoration: 'none',color:"black"}}>Mobiles</NavLink></MenuItem>
+        <MenuItem ><ListItemIcon><FilterNoneIcon/></ListItemIcon><NavLink to="/Eshopify/category/accessories" style={{ textDecoration: 'none',color:"black"}}>Accessories</NavLink></MenuItem>
       </List>
       <Divider />
       <List>

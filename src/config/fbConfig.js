@@ -3,7 +3,7 @@ import 'firebase/auth'
 import 'firebase/storage'
 import 'firebase/firestore'
 export const firebaseConfig = {
-    apiKey: "AIzaSyAMJDfRz0ENi8zXEXWpvOPMHC5Qzxt81wI ",
+    apiKey: "AIzaSyAMJDfRz0ENi8zXEXWpvOPMHC5Qzxt81wI",
     authDomain: "eshopify-9a78b.firebaseapp.com",
     databaseURL: "https://eshopify-9a78b.firebaseio.com",
     projectId: "eshopify-9a78b",

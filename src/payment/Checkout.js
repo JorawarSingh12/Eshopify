@@ -86,13 +86,43 @@ function getStepContent(step,address,cardDetails,changeAddress,changecardDetails
     cvv:"",
   })
   const handleNext = () => {
-    
+    if (activeStep === 0) {
+      const { firstName, lastName, address1, city, zip, country } = address;
+      if (!firstName.trim() || !lastName.trim() || !address1.trim() || !city.trim() || !zip.trim() || !country.trim()) {
+        alert("Please fill in all required shipping address fields.");
+        return;
+      }
+      if (!/^[a-zA-Z0-9\s-]{3,10}$/.test(zip.trim())) {
+        alert("Please enter a valid Zip / Postal code (3 to 10 alphanumeric characters).");
+        return;
+      }
+    } else if (activeStep === 1) {
+      const { cardName, cardNumber, expDate, cvv } = cardDetails;
+      if (!cardName.trim() || !cardNumber.trim() || !expDate.trim() || !cvv.trim()) {
+        alert("Please fill in all required payment details.");
+        return;
+      }
+      const cleanCard = cardNumber.replace(/\s+/g, '');
+      if (!/^\d{13,19}$/.test(cleanCard)) {
+        alert("Please enter a valid credit card number (13 to 19 digits).");
+        return;
+      }
+      const cleanCvv = cvv.trim();
+      if (!/^\d{3,4}$/.test(cleanCvv)) {
+        alert("Please enter a valid CVV (3 or 4 digits).");
+        return;
+      }
+      if (!/^(0[1-9]|1[0-2])\/?([0-9]{2}|[0-9]{4})$/.test(expDate.trim())) {
+        alert("Please enter a valid expiry date (MM/YY or MM/YYYY).");
+        return;
+      }
+    }
+
     if(activeStep===2)
     {
       cart[0].product.map(product=>addToOrder(product,uid)) 
     }
-      setActiveStep(activeStep + 1)
-    
+    setActiveStep(activeStep + 1)
   };
 
   const handleBack = () => {

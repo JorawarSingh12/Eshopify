@@ -25,18 +25,22 @@ export default function PaymentForm({cardDetails,changecardDetails}) {
           <TextField required id="cardName" name="cardName" value={cardDetails.cardName}  label="Name on card" fullWidth onChange={changeHandler}/>
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardNumber" name="cardNumber" label="Card number" value={cardDetails.cardNumber}  fullWidth onChange={changeHandler}/>
+          <TextField required id="cardNumber" name="cardNumber" label="Card number" value={cardDetails.cardNumber} inputProps={{ maxLength: 19 }} fullWidth onChange={changeHandler}/>
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="expDate" name="expDate" label="Expiry date" value={cardDetails.expDate} fullWidth onChange={changeHandler}/>
+          <TextField required id="expDate" name="expDate" label="Expiry date" value={cardDetails.expDate} inputProps={{ maxLength: 7 }} fullWidth onChange={changeHandler}/>
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
-            
+            required
+            id="cvv"
             label="CVV"
+            type="password"
             helperText="Last three digits on signature strip"
             fullWidth
             name="cvv"
+            value={cardDetails.cvv || ""}
+            inputProps={{ maxLength: 4 }}
             onChange={changeHandler}
           />
         </Grid>

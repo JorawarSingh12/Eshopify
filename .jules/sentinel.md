@@ -1,0 +1,4 @@
+## 2025-05-20 - Plaintext Sensitive Payment Data Exposure
+**Vulnerability:** The application was exposing sensitive, full credit card details (Primary Account Number / PAN) in plaintext on the order review screen, violating PCI-DSS standards (Requirement 3.3). Additionally, the CVV input field was not masked, allowing shoulder-surfing attacks.
+**Learning:** The application stored and passed raw checkout input values directly to UI components without implementing any masking or redaction layer. This resulted in full credit card numbers leaking into the DOM and client interface.
+**Prevention:** Mask all Primary Account Numbers (PANs) on any display screens so that at most the first 6 and last 4 digits are visible, though typically only displaying the last 4 is preferred for end-user safety. Additionally, always set sensitive verification inputs (like CVV/CVC) to use password masking fields (`type="password"`) and enforce input-level length/format validation.

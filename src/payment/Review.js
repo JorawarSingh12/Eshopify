@@ -27,10 +27,21 @@ export default function Review({cardDetails,address,cart}) {
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  // Mask the credit card number to show only the last 4 digits (e.g., •••• •••• •••• 1234) for PCI-DSS compliance and PII protection.
+  const maskCardNumber = (number) => {
+    if (!number) return '';
+    const cleanNumber = number.replace(/\D/g, '');
+    if (cleanNumber.length <= 4) {
+      return cleanNumber;
+    }
+    const lastFour = cleanNumber.slice(-4);
+    return `•••• •••• •••• ${lastFour}`;
+  };
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: cardDetails.cardNumber ? (cardDetails.cardNumber.substr(0,5)+"XXXX") : "" },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskCardNumber(cardDetails.cardNumber) },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 

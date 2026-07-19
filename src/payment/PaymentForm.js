@@ -8,10 +8,14 @@ import Checkbox from '@material-ui/core/Checkbox';
 export default function PaymentForm({cardDetails,changecardDetails}) {
 
   const changeHandler=(e)=>{
-   
+    let value = e.target.value;
+    if (e.target.name === 'cvv') {
+      // Restrict to digits only and maximum length of 4 for CVV security validation
+      value = value.replace(/\D/g, '').slice(0, 4);
+    }
     changecardDetails({
       ...cardDetails,
-    [e.target.name]:e.target.value
+      [e.target.name]: value
     })
   
 }
@@ -32,12 +36,16 @@ export default function PaymentForm({cardDetails,changecardDetails}) {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
-            
+            required
+            id="cvv"
             label="CVV"
+            type="password"
             helperText="Last three digits on signature strip"
             fullWidth
             name="cvv"
+            value={cardDetails.cvv || ''}
             onChange={changeHandler}
+            inputProps={{ maxLength: 4, pattern: '[0-9]*' }}
           />
         </Grid>
         <Grid item xs={12}>

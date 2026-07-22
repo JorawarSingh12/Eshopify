@@ -1,0 +1,4 @@
+## 2026-03-04 - Payment Card Data Protection and PCI-DSS Compliance
+**Vulnerability:** Exposure of Full Credit Card Numbers on Display Components and Plaintext CVV Inputs
+**Learning:** Raw payment details (such as full credit card numbers and CVVs) were stored and displayed without masking or masking configuration, which violates PCI-DSS compliance standards and exposes sensitive PII to unauthorized users, screen-grabbers, or logs. CVV input was not protected with a password field, allowing the digits to be visible on-screen during checkout.
+**Prevention:** Always mask credit card numbers on all user interface components to only display the last 4 digits (e.g. `•••• •••• •••• 1234`), use `type="password"` for CVV text inputs, and enforce strict digit-only format restrictions to reduce input tampering and payload injection vectors.

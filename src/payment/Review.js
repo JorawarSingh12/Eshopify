@@ -6,9 +6,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
-
-
-
 const useStyles = makeStyles((theme) => ({
   listItem: {
     padding: theme.spacing(1, 0),
@@ -24,19 +21,23 @@ const useStyles = makeStyles((theme) => ({
 export default function Review({cardDetails,address,cart}) {
   const classes = useStyles();
   
-  
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  const cleanCardNumber = cardDetails.cardNumber ? cardDetails.cardNumber.replace(/\D/g, '') : '';
+  // SECURITY: Only display the last 4 digits of the card number to comply with PCI-DSS and PII requirements.
+  const maskedCardNumber = cleanCardNumber
+    ? '•••• •••• •••• ' + cleanCardNumber.slice(-4)
+    : '';
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: cleanCardNumber ? cleanCardNumber.substr(0, 4) + ' ••••' : '••••' },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskedCardNumber },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 
-  
-const products = cart[0].product
-console.log(products)
+const products = cart[0].product;
+console.log(products);
 let total=0;
 products.forEach(element => {
   total=total+ parseFloat(element.price) ;

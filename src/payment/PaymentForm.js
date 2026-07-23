@@ -32,11 +32,15 @@ export default function PaymentForm({cardDetails,changecardDetails}) {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
-            
+            required
+            id="cvv"
             label="CVV"
+            type="password"
             helperText="Last three digits on signature strip"
             fullWidth
             name="cvv"
+            value={cardDetails.cvv || ''}
+            inputProps={{ maxLength: 4, pattern: '[0-9]*', inputMode: 'numeric' }}
             onChange={changeHandler}
           />
         </Grid>

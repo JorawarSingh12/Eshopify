@@ -27,10 +27,22 @@ export default function Review({cardDetails,address,cart}) {
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  const cardNo = cardDetails.cardNumber || '';
+  const firstChar = cardNo.trim().charAt(0);
+  let cardType = 'Credit Card';
+  if (firstChar === '4') cardType = 'Visa';
+  else if (firstChar === '5') cardType = 'MasterCard';
+  else if (firstChar === '3') cardType = 'American Express';
+  else if (firstChar === '6') cardType = 'Discover';
+
+  const cleanedCard = cardNo.replace(/\s+/g, '');
+  const last4 = cleanedCard.slice(-4);
+  const maskedCard = cleanedCard.length > 4 ? `•••• •••• •••• ${last4}` : last4;
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: cardType },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskedCard },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 

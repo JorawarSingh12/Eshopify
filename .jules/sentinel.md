@@ -1,0 +1,4 @@
+## 2026-03-01 - [PCI-DSS Compliance: Payment Information Leakage and Visual Snooping]
+**Vulnerability:** The application was displaying raw credit card numbers in the checkout order summary (`Review.js`) and exposing CVV input values as plain text (`PaymentForm.js`), violating PCI-DSS data storage and display standards.
+**Learning:** Legacy e-commerce payment form integrations often fail to apply visual mask constraints on inputs (like CVV) or display summaries (like the credit card number), exposing Personally Identifiable Information (PII) to visual/side-channel snooping and local logs/DOM leakage.
+**Prevention:** Mask all card numbers on display components to only show the last 4 digits (e.g., `xxxx-xxxx-xxxx-XXXX`), and always set input fields for CVVs to `type="password"` with strong digit-only restriction patterns (`maxLength: 4`, `pattern: '[0-9]*'`) to prevent raw character display.

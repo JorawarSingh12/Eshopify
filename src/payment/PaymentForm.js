@@ -8,13 +8,20 @@ import Checkbox from '@material-ui/core/Checkbox';
 export default function PaymentForm({cardDetails,changecardDetails}) {
 
   const changeHandler=(e)=>{
-   
+    let val = e.target.value;
+    if (e.target.name === 'cvv') {
+      // CVV: Restrict to only digits and limit to max 4 chars (Amex can be 4 digits)
+      val = val.replace(/\D/g, '').slice(0, 4);
+    } else if (e.target.name === 'cardNumber') {
+      // Card Number: Restrict to only digits and limit to max 19 chars
+      val = val.replace(/\D/g, '').slice(0, 19);
+    }
     changecardDetails({
       ...cardDetails,
-    [e.target.name]:e.target.value
+      [e.target.name]: val
     })
-  
-}
+  }
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -25,19 +32,40 @@ export default function PaymentForm({cardDetails,changecardDetails}) {
           <TextField required id="cardName" name="cardName" value={cardDetails.cardName}  label="Name on card" fullWidth onChange={changeHandler}/>
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardNumber" name="cardNumber" label="Card number" value={cardDetails.cardNumber}  fullWidth onChange={changeHandler}/>
+          <TextField
+            required
+            id="cardNumber"
+            name="cardNumber"
+            label="Card number"
+            value={cardDetails.cardNumber}
+            fullWidth
+            onChange={changeHandler}
+            inputProps={{
+              maxLength: 19,
+              pattern: '[0-9]*',
+              inputMode: 'numeric'
+            }}
+          />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField required id="expDate" name="expDate" label="Expiry date" value={cardDetails.expDate} fullWidth onChange={changeHandler}/>
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
-            
+            required
+            id="cvv"
+            name="cvv"
             label="CVV"
             helperText="Last three digits on signature strip"
             fullWidth
-            name="cvv"
+            type="password"
+            value={cardDetails.cvv || ''}
             onChange={changeHandler}
+            inputProps={{
+              maxLength: 4,
+              pattern: '[0-9]*',
+              inputMode: 'numeric'
+            }}
           />
         </Grid>
         <Grid item xs={12}>

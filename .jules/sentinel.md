@@ -1,0 +1,4 @@
+## 2025-03-08 - Secure Checkout Masking and CVV Configurations
+**Vulnerability:** Credit card numbers were displayed fully in the plain text on the checkout review page, leaking PII and violating PCI-DSS compliance. Additionally, the CVV input was plain-text rather than password-masked and lacked proper input size and character restrictions.
+**Learning:** When building fast-prototyped payment flows, sensitive payment details can easily be overlooked and rendered in plain text if there are no explicit security design templates or tests in place.
+**Prevention:** Mask all sensitive identifiers (credit cards, tax IDs, banking information) to show only the last 4 characters on all display components, and ensure CVV inputs are configured with `type="password"` and restricted to numeric characters with a maxLength of 4.

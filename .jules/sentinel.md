@@ -1,0 +1,4 @@
+## 2025-02-17 - Checkout Payment Information Disclosure
+**Vulnerability:** Exposed sensitive credit card number in plain text on the order review screen and lacked CVV input masking (plain text entry). This violated PCI-DSS security compliance and leaked Personally Identifiable Information (PII) on the UI.
+**Learning:** The order review component direct-rendered `cardDetails.cardNumber` instead of masking it to the last 4 digits, while the CVV `<TextField>` was missing the `type="password"` attribute and input validation constraints.
+**Prevention:** Always mask credit card numbers on all UI display screens to expose only the last 4 digits. Enforce masking on sensitive fields like CVV using `type="password"` with correct length constraints, and write automated tests ensuring these configurations do not regress.

@@ -24,13 +24,22 @@ const useStyles = makeStyles((theme) => ({
 export default function Review({cardDetails,address,cart}) {
   const classes = useStyles();
   
-  
+  const maskCardNumber = (num) => {
+    if (!num) return '';
+    const clean = num.replace(/\D/g, '');
+    if (clean.length <= 4) return clean;
+    return '****-****-****-' + clean.slice(-4);
+  };
+
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  const cardNum = cardDetails.cardNumber || '';
+  const cardTypeDetail = cardNum ? (cardNum.substr(0, 5) + 'XXXX') : '';
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: cardTypeDetail },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskCardNumber(cardNum) },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 

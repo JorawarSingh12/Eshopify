@@ -1,0 +1,4 @@
+## 2026-08-11 - [Sensitive Payment Information Exposure and Unmasked CVV Input]
+**Vulnerability:** Raw credit card numbers were fully displayed on the checkout review step without masking, and the CVV input field lacked password visibility masking, required validation, and length/character restrictions.
+**Learning:** This existed because standard UI components were configured to display input values directly without processing or masking for security/PCI-DSS compliance, and standard inputs were not restricted to secure types like "password" with appropriate length constraints.
+**Prevention:** Always mask sensitive payment details (like card numbers) in review screens to show only the last 4 digits, configure CVV inputs with `type="password"`, and enforce input constraints such as maximum length and numeric-only pattern attributes on input forms.

@@ -6,9 +6,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
-
-
-
 const useStyles = makeStyles((theme) => ({
   listItem: {
     padding: theme.spacing(1, 0),
@@ -21,22 +18,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Function to safely mask card details in compliance with PCI-DSS
+export function maskCardNumber(cardNumber) {
+  if (!cardNumber) return '';
+  const cleaned = cardNumber.replace(/\D/g, '');
+  if (cleaned.length <= 4) return cleaned;
+  const lastFour = cleaned.slice(-4);
+  const maskedLength = cleaned.length - 4;
+  return '*'.repeat(maskedLength) + lastFour;
+}
+
 export default function Review({cardDetails,address,cart}) {
   const classes = useStyles();
-  
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: cardDetails.cardNumber ? cardDetails.cardNumber.substr(0,5)+"XXXX" : "" },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskCardNumber(cardDetails.cardNumber) },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 
-  
-const products = cart[0].product
-console.log(products)
+const products = cart[0].product;
+console.log(products);
 let total=0;
 products.forEach(element => {
   total=total+ parseFloat(element.price) ;

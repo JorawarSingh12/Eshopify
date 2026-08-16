@@ -27,10 +27,15 @@ export default function Review({cardDetails,address,cart}) {
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  // Mask credit card number to show only last 4 digits for PCI-DSS compliance
+  const maskedCardNumber = cardDetails.cardNumber
+    ? 'xxxx-xxxx-xxxx-' + cardDetails.cardNumber.slice(-4)
+    : '';
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: cardDetails.cardNumber ? cardDetails.cardNumber.substr(0, 4) : '' },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskedCardNumber },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 

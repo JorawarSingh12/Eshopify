@@ -27,10 +27,15 @@ export default function Review({cardDetails,address,cart}) {
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  // Mask card number for security (PCI-DSS compliance) to prevent exposing full card numbers
+  const maskedCardNumber = cardDetails.cardNumber && cardDetails.cardNumber.length >= 4
+    ? 'xxxx-xxxx-xxxx-' + cardDetails.cardNumber.slice(-4)
+    : 'xxxx-xxxx-xxxx-xxxx';
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: cardDetails.cardNumber ? cardDetails.cardNumber.substr(0, 5) + "XXXX" : "XXXX" },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskedCardNumber },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 

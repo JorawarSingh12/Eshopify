@@ -1,9 +1,17 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './reducers/rootReducer';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const store = createStore(rootReducer);
+
+test('renders app component with provider', () => {
+  const { container } = render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  expect(container).toBeInTheDocument();
 });

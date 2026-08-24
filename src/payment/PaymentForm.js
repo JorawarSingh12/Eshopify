@@ -32,8 +32,10 @@ export default function PaymentForm({cardDetails,changecardDetails}) {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
-            
+            id="cvv"
             label="CVV"
+            type="password"
+            value={cardDetails.cvv || ''}
             helperText="Last three digits on signature strip"
             fullWidth
             name="cvv"

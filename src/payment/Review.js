@@ -27,10 +27,15 @@ export default function Review({cardDetails,address,cart}) {
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  // Mask card number for display (PCI-DSS compliance: show only last 4 digits)
+  const rawCardNum = (cardDetails.cardNumber || '').replace(/\s+/g, '');
+  const last4 = rawCardNum.slice(-4);
+  const maskedCardNumber = last4 ? `•••• •••• •••• ${last4}` : '••••';
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: cardDetails.cardType || 'Visa' },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskedCardNumber },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 

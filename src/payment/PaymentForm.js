@@ -31,12 +31,17 @@ export default function PaymentForm({cardDetails,changecardDetails}) {
           <TextField required id="expDate" name="expDate" label="Expiry date" value={cardDetails.expDate} fullWidth onChange={changeHandler}/>
         </Grid>
         <Grid item xs={12} md={6}>
+          {/* Security: Use type="password" to protect sensitive CVV from shoulder surfing/exposure */}
           <TextField
-            
+            required
+            type="password"
+            id="cvv"
             label="CVV"
             helperText="Last three digits on signature strip"
             fullWidth
             name="cvv"
+            value={cardDetails.cvv || ''}
+            inputProps={{ maxLength: 4 }}
             onChange={changeHandler}
           />
         </Grid>

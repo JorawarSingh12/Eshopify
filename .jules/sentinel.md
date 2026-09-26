@@ -1,0 +1,4 @@
+## 2026-09-26 - Sensitive Payment Information (PII) and CVV Plaintext Exposure
+**Vulnerability:** The checkout payment form rendered CVV input fields without `type="password"` and missing attribute constraints, exposing sensitive CVV security codes in plaintext. Additionally, the order review page displayed unmasked credit card numbers directly.
+**Learning:** React Material UI `TextField` components default to `type="text"` unless explicitly configured as `type="password"`. Display components often default to displaying raw prop values without masking unless explicit sanitization/masking wrappers are enforced.
+**Prevention:** Always enforce `type="password"` and input length restrictions on CVV input fields. Mask payment numbers (displaying only last 4 digits) before rendering order summaries to maintain PCI-DSS compliance.

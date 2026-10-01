@@ -22,22 +22,28 @@ export default function PaymentForm({cardDetails,changecardDetails}) {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardName" name="cardName" value={cardDetails.cardName}  label="Name on card" fullWidth onChange={changeHandler}/>
+          <TextField required id="cardName" name="cardName" value={cardDetails.cardName} label="Name on card" fullWidth onChange={changeHandler} autoComplete="cc-name" />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardNumber" name="cardNumber" label="Card number" value={cardDetails.cardNumber}  fullWidth onChange={changeHandler}/>
+          <TextField required id="cardNumber" name="cardNumber" label="Card number" value={cardDetails.cardNumber} fullWidth onChange={changeHandler} autoComplete="cc-number" />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="expDate" name="expDate" label="Expiry date" value={cardDetails.expDate} fullWidth onChange={changeHandler}/>
+          <TextField required id="expDate" name="expDate" label="Expiry date" value={cardDetails.expDate} fullWidth onChange={changeHandler} autoComplete="cc-exp" />
         </Grid>
         <Grid item xs={12} md={6}>
+          {/* Security: Mask CVV with type="password" and limit input length to prevent visual exposure and input spoofing */}
           <TextField
-            
+            required
+            type="password"
+            id="cvv"
             label="CVV"
             helperText="Last three digits on signature strip"
             fullWidth
             name="cvv"
+            value={cardDetails.cvv || ''}
             onChange={changeHandler}
+            autoComplete="cc-csc"
+            inputProps={{ maxLength: 4 }}
           />
         </Grid>
         <Grid item xs={12}>

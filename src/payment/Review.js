@@ -27,10 +27,18 @@ export default function Review({cardDetails,address,cart}) {
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  const formatCardNumber = (cardNumber) => {
+    if (!cardNumber) return '';
+    const digitsOnly = cardNumber.replace(/\D/g, '');
+    if (digitsOnly.length < 4) return 'xxxx-xxxx-xxxx';
+    const last4 = digitsOnly.slice(-4);
+    return `xxxx-xxxx-xxxx-${last4}`;
+  };
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: 'Credit / Debit Card' },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: formatCardNumber(cardDetails.cardNumber) },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 

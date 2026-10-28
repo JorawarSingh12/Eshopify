@@ -1,0 +1,4 @@
+## 2026-03-31 - Masking Sensitive Payment Information & CVV Protection
+**Vulnerability:** Credit card numbers were rendered in cleartext on the order summary (`Review.js`) and CVV input fields were rendered as plain text inputs without `type="password"` (`PaymentForm.js`), leading to sensitive payment info (PII) leakage and PCI-DSS non-compliance.
+**Learning:** React components displaying payment confirmation and forms often default to string props and text inputs if explicit password input types and masking logic are not strictly enforced.
+**Prevention:** Ensure credit card numbers are masked showing at most the last 4 digits on display screens, set CVV inputs explicitly to `type="password"` with max length constraints, and add regression unit tests to prevent payment attribute regressions.

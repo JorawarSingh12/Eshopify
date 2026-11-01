@@ -27,10 +27,14 @@ export default function Review({cardDetails,address,cart}) {
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  // PCI-DSS Requirement 3.3: Mask PAN when displayed (show only last 4 digits)
+  const cardNumberStr = cardDetails && cardDetails.cardNumber ? String(cardDetails.cardNumber).replace(/\s+/g, '') : '';
+  const last4 = cardNumberStr.length >= 4 ? cardNumberStr.slice(-4) : cardNumberStr;
+  const maskedCardNumber = cardNumberStr ? `•••• •••• •••• ${last4}` : '';
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskedCardNumber },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 

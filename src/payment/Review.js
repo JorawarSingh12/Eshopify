@@ -27,16 +27,19 @@ export default function Review({cardDetails,address,cart}) {
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  // Security: Mask PAN (Primary Account Number) displaying only last 4 digits to prevent card data exposure (PCI-DSS)
+  const maskedCardNumber = cardDetails.cardNumber && cardDetails.cardNumber.length >= 4
+    ? `•••• •••• •••• ${cardDetails.cardNumber.slice(-4)}`
+    : '••••';
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskedCardNumber },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 
   
 const products = cart[0].product
-console.log(products)
 let total=0;
 products.forEach(element => {
   total=total+ parseFloat(element.price) ;

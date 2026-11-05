@@ -27,10 +27,15 @@ export default function Review({cardDetails,address,cart}) {
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  // Security: Mask PAN (Primary Account Number) to show only the last 4 digits per PCI-DSS guidelines
+  const maskedCardNumber = cardDetails.cardNumber
+    ? `xxxx-xxxx-xxxx-${cardDetails.cardNumber.slice(-4)}`
+    : '';
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: 'Visa / MasterCard' },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskedCardNumber },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 

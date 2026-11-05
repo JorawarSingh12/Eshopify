@@ -1,0 +1,4 @@
+## 2026-03-31 - Masking Payment Card Data & CVV Field Protection
+**Vulnerability:** Unmasked Primary Account Numbers (PAN) were displayed on order review checkout pages in plain text, and the CVV input field was unmasked (`type="text"`) without length or character restrictions, exposing sensitive cardholder data to shoulder-surfing and violating PCI-DSS data protection requirements.
+**Learning:** Checkout and review components often reuse state objects (`cardDetails`) directly without transformation for UI rendering, inadvertently exposing raw card numbers or CVVs across different checkout steps.
+**Prevention:** Always mask PANs so only the last 4 digits are displayed (e.g., `xxxx-xxxx-xxxx-${last4}`), enforce `type="password"` with strict `maxLength` and input pattern validations on CVV fields, and write unit tests asserting that full card credentials never appear in rendered components.

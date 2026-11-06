@@ -27,10 +27,16 @@ export default function Review({cardDetails,address,cart}) {
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  // Security: Mask Primary Account Number (PAN) to prevent exposure of sensitive cardholder data per PCI-DSS standards
+  const rawCardNumber = (cardDetails.cardNumber || '').trim();
+  const maskedCardNumber = rawCardNumber.length > 4
+    ? `${'•'.repeat(Math.max(0, rawCardNumber.length - 4))}${rawCardNumber.slice(-4)}`
+    : rawCardNumber;
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: rawCardNumber ? rawCardNumber.substr(0, 4) + "XXXX" : "" },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskedCardNumber },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 

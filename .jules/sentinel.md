@@ -1,0 +1,4 @@
+## 2026-07-14 - Masking Sensitive Payment Data in Checkout
+**Vulnerability:** In `PaymentForm.js`, the CVV field was rendered as a plain text input without masking or character restrictions, leaving the card verification code exposed to shoulder surfing and device caching. In `Review.js`, the full credit card Primary Account Number (PAN) was rendered in plain text on the review confirmation screen in violation of PCI-DSS standards.
+**Learning:** Checkout review and payment input forms frequently render user state verbatim without applying masking transforms or secure input types (`type="password"`, `autoComplete="cc-csc"`).
+**Prevention:** Always mask card numbers to show only the last 4 digits on display screens (`••••••••••••1234`), use `type="password"` for CVV/CVC inputs, enforce appropriate `maxLength` and `autoComplete` attributes, and add automated regression tests verifying that raw sensitive payment information is never displayed.

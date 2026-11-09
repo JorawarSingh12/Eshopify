@@ -1,0 +1,4 @@
+## 2026-03-31 - Masking sensitive payment card details and securing CVV input
+**Vulnerability:** Full credit card primary account numbers (PAN) were displayed in plaintext on the checkout Review page, and the card CVV input field in PaymentForm was rendered as plain text without input length limits or proper autocomplete semantics, exposing sensitive cardholder data to shoulder surfing and violating PCI-DSS data protection requirements.
+**Learning:** React checkout flows using Material-UI text fields must explicitly set `type="password"`, `autoComplete="cc-csc"`, and input constraints (`maxLength`) for CVV inputs, as well as mask PANs to only display the last 4 digits in review steps.
+**Prevention:** Always mask card numbers (PAN) displaying at most the last 4 digits on any confirmation or review screens, and treat CVV/CVC codes as secret credentials that must never be rendered in cleartext inputs.

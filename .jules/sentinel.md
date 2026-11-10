@@ -1,0 +1,4 @@
+## 2026-07-14 - Masking Sensitive Payment Data in Checkout
+**Vulnerability:** The payment flow rendered CVV input as plain text without concealing input (`type="password"`) and displayed the entire unmasked credit card number on the review screen, violating PCI-DSS requirements and exposing cardholder information to shoulder surfing and screen snooping.
+**Learning:** React form inputs created with Material-UI `TextField` default to `type="text"`. Additionally, review components frequently display raw form state directly unless explicitly formatted or masked before rendering.
+**Prevention:** Always mark CVV/CVC fields as `type="password"` with `autoComplete="cc-csc"` and strict length constraints. On confirmation and review screens, enforce a masking rule that only reveals at most the last 4 digits (e.g., `•••• •••• •••• ${last4}`) of payment cards.

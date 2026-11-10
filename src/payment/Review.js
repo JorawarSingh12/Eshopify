@@ -27,16 +27,22 @@ export default function Review({cardDetails,address,cart}) {
   
   const addresses = [address.address1, address.city, address.zip, address.country];
 
+  // PCI-DSS compliance: Mask full card number, displaying only the last 4 digits
+  const cleanCardNumber = (cardDetails.cardNumber || '').replace(/\s+/g, '');
+  const last4 = cleanCardNumber.slice(-4);
+  const maskedCardNumber = cleanCardNumber.length >= 4
+    ? `•••• •••• •••• ${last4}`
+    : cleanCardNumber;
+
   const payments = [
-    { name: 'Card type', detail:cardDetails.cardNumber.substr(0,5)+"XXXX" },
+    { name: 'Card type', detail: cleanCardNumber.length >= 4 ? cleanCardNumber.slice(0, 4) + 'XXXX' : 'Card' },
     { name: 'Card holder', detail: cardDetails.cardName },
-    { name: 'Card number', detail: cardDetails.cardNumber },
+    { name: 'Card number', detail: maskedCardNumber },
     { name: 'Expiry date', detail: cardDetails.expDate },
   ];
 
   
 const products = cart[0].product
-console.log(products)
 let total=0;
 products.forEach(element => {
   total=total+ parseFloat(element.price) ;
